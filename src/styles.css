@@ -35,7 +35,7 @@ body {
     position: relative;
 }
 
-.Thing__tick__false::after {
+.Thing__tick_false::after {
     content: '';
     border: 1px solid rgba(0,0,0,.24);
     border-radius: 2px;
@@ -47,7 +47,7 @@ body {
     left: 0;
 }
 
-.Thing__tick__true::after {
+.Thing__tick_true::after {
     content: '';
     background: #2164BF;
     border-radius: 4px;
