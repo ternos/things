@@ -31,7 +31,7 @@ body {
 .Thing__tick {
     width: 18px;
     height: 18px;
-    /* background: #ccc; */
+    flex-shrink: 0;
     position: relative;
 }
 
@@ -119,4 +119,12 @@ body {
     height: 42px;
     background-image: url("plus.svg");
     background-repeat: no-repeat;
+}
+
+@media (max-width: 560px) {
+    .wrap {
+        padding: 50px 16px;
+        max-width: 560px;
+        margin: 0 auto;
+    }
 }
