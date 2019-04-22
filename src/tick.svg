@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="10px" viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Checkbox/Filled" transform="translate(-2.000000, -2.000000)">
+            <g id="tick" transform="translate(2.000000, 2.000000)">
+                <rect id="Rectangle" fill="#2164BF" opacity="0.100000001" x="0" y="0" width="10" height="10"></rect>
+                <polyline id="Path" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" points="1 5 4 8 9 2"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

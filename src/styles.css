@@ -1,8 +1,13 @@
 body {
+    margin: 0;
+    caret-color: #609EF2;
+}
+
+.font {
     font-family: 'YS Text',-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
     font-size: 14px;
     line-height: 18px;
-    margin: 0;
+    color: #131416;
 }
 
 .wrap {
@@ -14,33 +19,87 @@ body {
 .Thing {
     display: flex;
     border-radius: 4px;
-    padding: 5px;
+    padding: 5px 5px 5px 0;
     cursor: pointer;
     transition: background .1s;
 }
 
 .Thing:active {
-    transform: scale(.99);
+    /* transform: scale(.99); */
     transition: transform .1s;
 }
 
 .Thing:hover {
-    background: #CFE2FD;
+    /* background: rgba(0,0,0,.05); */
     /* transition: background .1s; */
 }
 
-.Thing__tick {
-    width: 18px;
+.Thing_selected {
+    background: #CFE2FD;
+}
+
+.Thing_expanded {
+    margin: 30px -5px 45px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 rgba(19,20,22,.15), 0 0 6px 0 rgba(19,20,22,.1);
+    padding: 12px 10px;
+    overflow: hidden;
+    min-height: 56px;
+    animation-fill-mode: forwards;
+    animation: opacity .2s ease-out;
+}
+
+.Thing_expanded:focus {
+    background: none;
+}
+
+.Thing_expanded:hover {
+    background: none !important;
+}
+
+.Thing__edit {
+    width: 100%;
+    color: #131416 !important;
     height: 18px;
+    padding: 0;
+    border: none;
+}
+input[placeholder] {
+    color: #ADB0B4;
+}
+
+:focus {
+    background: #CFE2FD;
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+    background: none;
+}
+
+.Thing__tick {
+    width: 28px;
+    height: 28px;
     flex-shrink: 0;
-    position: relative;
+    position: absolute;
+    margin: -5px 0;
+}
+
+.Thing__tick::after {
+    transition: background .2s ease-out;
+    background-position-x: 50%;
+    background-position-y: 50%;
 }
 
 .Thing__tick_false::after {
     content: '';
     border: 1px solid rgba(0,0,0,.24);
     border-radius: 2px;
-    margin: 3px;
+    margin: 8px;
     position: absolute;
     top: 0;
     right: 0;
@@ -50,9 +109,11 @@ body {
 
 .Thing__tick_true::after {
     content: '';
-    background: #2164BF;
+    background-color: #2164BF;
+    background-image: url('../src/tick.svg');
+    background-repeat: no-repeat;
     border-radius: 4px;
-    margin: 2px;
+    margin: 7px;
     position: absolute;
     top: 0;
     right: 0;
@@ -60,8 +121,16 @@ body {
     left: 0;
 }
 
-.Thing__tick + .Thing__name {
-    margin-left: 4px;
+.Thing__name {
+    margin-left: 28px;
+}
+
+.Thing__tick_true + .Thing__name {
+    color: #ADB0B4;
+}
+
+.Thing__tick_true < .Thing_selected {
+    background: transparent !important;
 }
 
 
@@ -103,29 +172,29 @@ body {
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.12);
 }
 
-.card__placeholder {
-    padding-top: 110px;
-}
-
-.card__text {
-    padding-top: 32px;
-    font-size: 32px;
-    color: #D9D6D2;
-    font-weight: 700;
-}
-
-.card__plus {
-    margin: 0 auto;
-    width: 42px;
-    height: 42px;
-    background-image: url("plus.svg");
-    background-repeat: no-repeat;
-}
-
 @media (max-width: 560px) {
     .wrap {
         padding: 50px 16px;
         max-width: 560px;
         margin: 0 auto;
+    }
+}
+
+@keyframes resizeTask {
+    from {
+        height:0px;
+    }
+    to {
+        min-height: 56px;
+    }
+}
+
+@keyframes opacity {
+    from {
+        opacity: 0;
+        margin: 0px -5px 5px;
+    } to {
+        opacity: 1;
+        margin: 30px -5px 45px;
     }
 }
