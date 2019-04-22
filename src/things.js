@@ -1,4 +1,42 @@
 window.onload = () => {
+
+  var apiKey = 'keyNwyXr6NXOhOtzx'
+  const url = 'https://api.airtable.com/v0/appYrbaVIKW8Z5iFj/ToDo'
+  const listUrl = url + '?cellFormat=json'
+  var xhr = new XMLHttpRequest();
+  
+  let json = [];
+  xhr.open('GET', listUrl);
+  xhr.setRequestHeader('Authorization', 'Bearer ' + apiKey);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      json = JSON.parse(xhr.responseText)
+      drawList(json)
+    }
+  }
+  xhr.send();
+  
+drawList = (data) => {
+  let list = data.records
+  for(i = 0; i < list.length; i++) {
+    // console.log(list[i].fields.Tick)
+    let text = list[i].fields.Text
+    let tick = list[i].fields.Tick
+    tick == undefined ? tick = false : tick = true;
+
+    let div = document.createElement('div')
+    div.className = "Thing noselect"
+    div.setAttribute('tabindex', 0)
+    div.innerHTML = `<div class="Thing__tick Thing__tick_${tick}"></div>
+      <div class="Thing__name">${text}</div>`
+
+    let List = document.querySelector('.List')
+    console.log(List)
+    List.appendChild(div)
+    // console.log(dir)
+  }
+}
+
 let things = document.querySelectorAll('.Thing')
 
 window.addEventListener('dblclick', (o) => {
